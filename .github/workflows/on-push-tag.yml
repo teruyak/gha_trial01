@@ -21,7 +21,7 @@ jobs:
           # 同名のreleaseがすでに存在する場合は処理中止にする. 同名releaseが新規に生成されるとややこしいため
           if gh release view "${{ github.ref_name }}" > /dev/null 2>&1; then
             url=$(gh release view "${{ github.ref_name }}" --json url -q .url)
-            echo "::error error: Release for tag ${{ github.ref_name }} already exists: ${url}"
+            echo "::error title=処理を中断しました(同名releaseが存在)::release ${{ github.ref_name }} はすでに存在しています: ${url}"
             exit 1
           fi
         env:
