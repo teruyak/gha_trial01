@@ -32,3 +32,4 @@ jobs:
           --notes "Release for tag ${{ github.ref_name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # TODO: リリース名は既存releaseと重複してもそのまま作成されてしまうので、actionsの最初のほうでチェックしたほうが良さそう
