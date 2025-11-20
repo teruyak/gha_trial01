@@ -20,7 +20,8 @@ jobs:
           echo "Triggered by tag: ${{ github.ref_name }}"
           # 同名のreleaseがすでに存在する場合は処理中止にする. 同名releaseが新規に生成されるとややこしいため
           if gh release view "${{ github.ref_name }}" > /dev/null 2>&1; then
-            echo "Release for tag ${{ github.ref_name }} already exists. Exiting."
+            url=$(gh release view "${{ github.ref_name }}" --json url -q .url)
+            echo "::error error: Release for tag ${{ github.ref_name }} already exists: ${url}"
             exit 1
           fi
         env:
